@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import siteMetadata from '@/data/siteMetadata'
 import headerNavLinks from '@/data/headerNavLinks'
 import Logo from '@/data/logo.svg'
@@ -7,6 +8,9 @@ import ThemeSwitch from './ThemeSwitch'
 import SearchButton from './SearchButton'
 
 const Header = () => {
+  // State to keep track of the clicked link title
+  const [activeLink, setActiveLink] = useState('')
+
   return (
     <header className="flex items-center justify-between py-10">
       <div>
@@ -33,6 +37,8 @@ const Header = () => {
               key={link.title}
               href={link.href}
               className="hidden font-medium text-gray-900 dark:text-gray-100 sm:block"
+              onClick={() => setActiveLink(link.title)} // Set active link on click
+              {...(activeLink && { opened: activeLink })} // Set opened attribute to active link title
             >
               {link.title}
             </Link>
