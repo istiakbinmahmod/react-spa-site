@@ -1,3 +1,5 @@
+"use client";  // Add this line to make the component a Client Component
+
 import { useState } from 'react'
 import siteMetadata from '@/data/siteMetadata'
 import headerNavLinks from '@/data/headerNavLinks'
