@@ -25,7 +25,7 @@ jobs:
         uses: optimizely/upload-custom-code-action@v1.0.3
         id: upload-custom-code
         with:
-          optimizely-access-token: ${{ secrets.OPTIMIZELY_API_ACCESS_TOKEN }}
+          optimizely-access-token: ${{ secrets.OPTIMIZELY_API_ACCESS_TOKEN_SECRET }}
           parameters-comment: ${{github.event.comment.body}}
           fail-silently: true
       - name: Update comment with success notification
