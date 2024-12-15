@@ -36,7 +36,7 @@ on:
         description: 'Page ID - required for Variation Level Changes'
         required: false
       no-comment:
-        description: 'Should a comment not be appended to the end of the custom code?'
+        description: 'Should a comment NOT be appended to the end of the custom code?'
         required: true
         type: choice
         options:
@@ -82,6 +82,15 @@ jobs:
       - name: My first step - check out repository
         uses: actions/checkout@v4
 
+      - name: Reverse `no-comment` value
+        id: reverse_no_comment
+        run: |
+          if [ "${{ github.event.inputs.no-comment }}" = "true" ]; then
+            echo "reversed=false" >> $GITHUB_ENV
+          else
+            echo "reversed=true" >> $GITHUB_ENV
+          fi
+
       - name: Upload custom code
         uses: optimizely/upload-custom-code-action@v1.0.3
         id: upload-custom-code
@@ -94,9 +103,9 @@ jobs:
           experiment-id: ${{ github.event.inputs.experiment-id }}
           variation-id: ${{ github.event.inputs.variation-id }}
           page-id: ${{ github.event.inputs.page-id }}
-          no-comment: ${{ github.event.inputs.no-comment }}
+          no-comment: ${{ env.reversed }}
           custom-comment: ${{ github.event.inputs.custom-comment }}
           fail-silently: ${{ github.event.inputs.fail-silently }}
-      # Use the output from the `upload custom code` step
+
       - name: Get the upload result
         run: echo "Was the process successful? ${{ steps.upload-custom-code.outputs.success }}"
