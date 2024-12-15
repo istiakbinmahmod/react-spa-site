@@ -1,5 +1,9 @@
 name: Custom Code Upload on Issue Comment
 
+permissions:
+  issues: write
+  pull-requests: write
+
 on:
   issue_comment:
     types: [created]
@@ -18,10 +22,10 @@ jobs:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
       - name: Upload custom code
         if: ${{ steps.checkForKeyword.outputs.triggered == 'true' }}
-        uses: optimizely/upload-custom-code-action@1.0.0
+        uses: optimizely/upload-custom-code-action@v1.0.3
         id: upload-custom-code
         with:
-          optimizely-access-token: ${{ secrets.OPTIMIZELY_API_ACCESS_TOKEN }}
+          optimizely-access-token: ${{ secrets.OPTIMIZELY_API_ACCESS_TOKEN_SECRET }}
           parameters-comment: ${{github.event.comment.body}}
           fail-silently: true
       - name: Update comment with success notification
