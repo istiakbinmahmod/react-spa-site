@@ -1,5 +1,9 @@
 name: Custom Code Upload on Issue Comment
 
+permissions:
+  issues: write
+  pull-requests: write
+
 on:
   issue_comment:
     types: [created]
