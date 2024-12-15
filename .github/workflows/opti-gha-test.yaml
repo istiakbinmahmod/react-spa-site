@@ -36,7 +36,7 @@ on:
         description: 'Page ID - required for Variation Level Changes'
         required: false
       no-comment:
-        description: 'Should a comment not be appended to the end of the custom code?'
+        description: 'Should a comment NOT be appended to the end of the custom code?'
         required: true
         type: choice
         options:
