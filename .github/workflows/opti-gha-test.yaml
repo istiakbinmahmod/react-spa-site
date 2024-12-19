@@ -16,7 +16,7 @@ on:
           - variation
         default: 'variation'
       custom-code-type:
-        description: 'Select the type of custom code'
+        description: 'Select the type of custom code (Custom JS or Custom CSS)'
         required: true
         type: choice
         options:
@@ -36,7 +36,7 @@ on:
         description: 'Page ID - required for Variation Level Changes'
         required: false
       no-comment:
-        description: 'Should a comment NOT be appended to the end of the custom code?'
+        description: 'No Comment - Whether or not a comment SHOULD NOT be appended to the end of the custom code'
         required: true
         type: choice
         options:
@@ -48,7 +48,7 @@ on:
         required: false
         default: 'This code was uploaded via the Optimizely Upload Custom Code Github Action.'
       fail-silently:
-        description: 'Should the workflow fail silently?'
+        description: 'Fail Silently - When set to true, only print errors in logs but does not fail entire workflow'
         required: true
         type: choice
         options:
@@ -77,6 +77,7 @@ jobs:
 
   update_experiment_custom_code:
     runs-on: ubuntu-latest
+    name: A job to upload custom code to an Optimizely experiment
     needs: validate_inputs
     steps:
       - name: My first step - check out repository
@@ -86,7 +87,7 @@ jobs:
         uses: optimizely/upload-custom-code-action@v1.0.3
         id: upload-custom-code
         with:
-          optimizely-access-token: ${{ secrets.OPTIMIZELY_API_ACCESS_TOKEN_SECRET }}
+          optimizely-access-token: ${{ secrets.OPTIMIZELY_API_ACCESS_TOKEN }}
           code-file-path: ${{ github.event.inputs.code-file-path }}
           custom-code-level: ${{ github.event.inputs.custom-code-level }}
           custom-code-type: ${{ github.event.inputs.custom-code-type }}
