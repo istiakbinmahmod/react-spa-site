@@ -20,8 +20,10 @@ on:
         required: true
         type: choice
         options:
-          - custom_code
-          - custom_css
+          - value: custom_code
+          - display: "Custom JS"
+          - value: custom_css
+          - display: "Custom CSS"
         default: 'custom_code'
       project-id:
         description: 'Project ID - required for Project Level Changes'
