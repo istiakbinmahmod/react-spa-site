@@ -1,1 +1,0 @@
-console.log('Custom code from GHA');
