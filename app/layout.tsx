@@ -65,7 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${space_grotesk.variable} scroll-smooth`}
       suppressHydrationWarning
     >
-      <Script src="https://optimizely-staging.s3.amazonaws.com/js/5050709535358976.js"></Script>
+      <Script src="https://optimizely-staging.s3.amazonaws.com/js/6141061776277504.js"></Script>
       {/* snippet link above */}
       <link rel="apple-touch-icon" sizes="76x76" href="/static/favicons/apple-touch-icon.png" />
       <link rel="icon" type="image/png" sizes="32x32" href="/static/favicons/favicon-32x32.png" />
